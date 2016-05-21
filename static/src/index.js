@@ -1,27 +1,19 @@
 require('expose?$!expose?jQuery!jquery');
 require("bootstrap-webpack");
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Redirect } from 'react-router';
-import configureStore from './store/configureStore';
-import routes from './routes';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import 'style.scss';
+import { render } from 'react-dom';
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { createHashHistory } from 'history';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import 'style.scss';
+import configureStore from './store/configureStore';
+import Root from './containers/Root';
 
 injectTapEventPlugin();
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store)
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={history}>
-            <Redirect from="/" to="main"/>
-            {routes}
-        </Router>
-    </Provider>,
+render(
+    <Root store={store} history={history}/>,
     document.getElementById('root')
 );
