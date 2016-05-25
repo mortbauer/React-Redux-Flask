@@ -3,14 +3,14 @@ import { Link } from 'react-router';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../actions/auth';
 import { bindActionCreators } from 'redux';
-import AppBar from 'material-ui/lib/app-bar';
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 import listensToClickOutside from 'react-onclickoutside/decorator';
 import { routeActions } from 'react-router-redux'
-import Divider from 'material-ui/lib/divider';
 import { browserHistory } from 'react-router'
 
 
@@ -70,7 +70,7 @@ export class Header extends Component {
     render() {
         return (
             <header>
-                <LeftNav open={this.state.open}>
+                <Drawer open={this.state.open}>
                     {
                         !this.props.isAuthenticated ?
                             <div>
@@ -95,7 +95,7 @@ export class Header extends Component {
                                 </MenuItem>
                             </div>
                     }
-                </LeftNav>
+                </Drawer>
                 <AppBar
                     title="React-Redux-Flask"
                     onLeftIconButtonTouchTap={() => this.openNav()}

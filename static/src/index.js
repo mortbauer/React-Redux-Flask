@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import 'style.scss';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import configureStore from './store/configureStore';
 import Root from './containers/Root';
 
@@ -14,6 +15,8 @@ const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store)
 
 render(
-    <Root store={store} history={history}/>,
+    <MuiThemeProvider>
+        <Root store={store} history={history}/>
+    </MuiThemeProvider>,
     document.getElementById('root')
 );
